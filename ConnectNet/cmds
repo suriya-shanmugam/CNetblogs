@@ -1,0 +1,3 @@
+sudo docker build -t cnet:v0 .
+sudo docker tag cnet:v0 suriyashanmugam/cnet:v0
+sudo docker push suriyashanmugam/cnet:v0

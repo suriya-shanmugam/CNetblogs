@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Additional styles specific to the sign-up page */
+        .signup-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .signup-form .form-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .signup-form .form-footer a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .signup-form .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>LogIn</h2>
+        <form class="signup-form" onsubmit="return false;">
+            <input id="userName" type="text" placeholder="Name" required>
+            <input id="emailId" type="text" placeholder="EmailId" required>
+            <input id="password" type="password" placeholder="Password" required>
+            <button type="submit" onclick="signUp()">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        async function signUp() {
+            // Here you would typically handle the sign-up process
+            // For this example, we'll just show an alert
+            const username = document.getElementById('userName').value;
+            const emailid = document.getElementById('emailId').value;
+            const password = document.getElementById('password').value;
+
+            const signupdata = {
+                username : username,
+                emailid : emailid,
+                password : password
+            }
+            console.log(signupdata);
+
+            const response =  await fetch('/login',{
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(signupdata)
+            });
+
+            const result = await response.json();
+            if(result.code == 200){
+                window.location.href = '/home'
+            }
+            console.log(result);
+
+
+        }
+    </script>
+</body>
+</html>

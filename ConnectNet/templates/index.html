@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='home.css')}}">
+</head>
+<body>
+    <div class="container">
+        
+       
+            <div class="post-box">
+                <div class="post-header">
+                    <input type="text" id="post-title" placeholder="What's on your mind?">
+                </div>
+                <textarea id="post-message" placeholder="Share your thoughts..."></textarea>
+                <div class="post-footer">
+                    <button onclick="addPost()">Post</button>
+                </div>
+            </div>
+            <div class="tabs">
+            <div id="default" class="tab active" onclick="loadFeed()">Feed</div>
+            <div id="people" class="tab" onclick="loadPeople()">People</div>
+            <div id="insights" class="tab" onclick="loadInsights()">Insights</div>
+        </div>
+        <div class="content" id="content">
+            <!-- Content will be dynamically populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='script.js')}}"></script>
+</body>
+</html>

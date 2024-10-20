@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cnetbase
+    ports:
+      - "3307:3306"
+    networks:
+      - my_network  
+  
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DB=cnetbase
+      - SP1_URL=http://172.19.0.2:5001
+    networks:
+      - my_network  
+
+networks:
+  my_network:
+    driver: bridge
+    external: true
